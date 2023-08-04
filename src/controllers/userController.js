@@ -69,10 +69,9 @@ const createUser= async function(req, res){
                    if (!userMatch) return res.status(400).send({ status: false, msg: "Email or Password is incorrect" })
            
                    const token = jwt.sign({
-                       userId: userMatch._id,
-                       batch:"uranium",
-                       groupNo:"46"
-                   }, "Group-46", {expiresIn: "70h" })
+                       userId: userMatch._id,  
+                       
+                   }, "him104", {expiresIn: "70h" })
                    return res.status(200).send({ status: true, msg: "You are successfully logged in", token })
                }
                catch (error) {
