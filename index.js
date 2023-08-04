@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
 const route = require('./routes/route.js');
@@ -7,9 +8,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect("mongodb+srv://him104:root@cluster0.qo8th.mongodb.net/codepanda", {
-    useNewUrlParser: true
-})
+mongoose.connect(process.env.mongo_uri)
 .then( () => console.log("MongoDb is connected"))
 .catch ( err => console.log(err) )
 

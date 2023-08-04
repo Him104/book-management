@@ -10,7 +10,7 @@ const authentication = async function(req, res, next){
         if(!token){
             return res.status(400).send({status:false, msg: "login is required, token set in header"})
         }
-        const decodedtoken =jwt.verify(token, "him104")
+        const decodedtoken =jwt.verify(token, process.env.SECRET_KEY)
         if(!decodedtoken){
             return res.status(400).send({status:false, msg: "token is invalid"})
         }
@@ -25,7 +25,7 @@ const authentication = async function(req, res, next){
 let authorization = async function (req, res, next) {
     try {
         let token = req.headers["x-api-key"];
-        let decodedtoken = jwt.verify(token, "him104")
+        let decodedtoken = jwt.verify(token, process.env.SECRET_KEY)
         
         let bookId = req.params.bookId;
         

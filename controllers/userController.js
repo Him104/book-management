@@ -71,7 +71,7 @@ const createUser= async function(req, res){
                    const token = jwt.sign({
                        userId: userMatch._id,  
                        
-                   }, "him104", {expiresIn: "70h" })
+                   }, process.env.SECRET_KEY, {expiresIn: "70h" })
                    return res.status(200).send({ status: true, msg: "You are successfully logged in", token })
                }
                catch (error) {
